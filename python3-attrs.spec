@@ -6,7 +6,7 @@
 Summary:	Writing classes without having to implement object protocols
 Name:		python3-%{module}
 Version:	25.1.0
-Release:	2
+Release:	3
 License:	MIT
 Group:		Libraries/Python
 Source0:	https://pypi.debian.net/attrs/%{module}-%{version}.tar.gz
