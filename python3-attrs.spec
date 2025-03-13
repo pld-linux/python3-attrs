@@ -1,16 +1,16 @@
 # Conditional build:
-%bcond_without	doc	# API documentation
+%bcond_with	doc	# API documentation
 %bcond_without	tests	# unit tests
 
 %define		module	attrs
 Summary:	Writing classes without having to implement object protocols
 Name:		python3-%{module}
-Version:	25.1.0
-Release:	3
+Version:	25.3.0
+Release:	1
 License:	MIT
 Group:		Libraries/Python
 Source0:	https://pypi.debian.net/attrs/%{module}-%{version}.tar.gz
-# Source0-md5:	338069d6f69126086d589b2cb44f4c73
+# Source0-md5:	173fe452e1fe986051d9bc194ed59525
 URL:		https://www.attrs.org/
 BuildRequires:	python3-build
 BuildRequires:	python3-hatch_fancy_pypi_readme
@@ -19,16 +19,12 @@ BuildRequires:	python3-hatchling
 BuildRequires:	python3-installer
 BuildRequires:	python3-modules >= 1:3.2
 %if %{with tests}
-#BuildRequires:	python3-
+BuildRequires:	python3-pytest
 %endif
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 2.044
-# when using /usr/bin/env or other in-place substitutions
-#BuildRequires:	sed >= 4.0
 %if %{with doc}
 BuildRequires:	sphinx-pdg-3
-# or
-BuildRequires:	python3-tox
 %endif
 # replace with other requires if defined in setup.py
 Requires:	python3-modules >= 1:3.2
@@ -68,10 +64,6 @@ PYTEST_PLUGINS= \
 %{__make} -C docs html \
 	SPHINXBUILD=sphinx-build-3
 rm -rf docs/_build/html/_sources
-
-# or
-
-%{_bindir}/tox -e docs
 %endif
 
 %install
