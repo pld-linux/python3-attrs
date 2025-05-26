@@ -13,8 +13,8 @@ Source0:	https://pypi.debian.net/attrs/%{module}-%{version}.tar.gz
 # Source0-md5:	173fe452e1fe986051d9bc194ed59525
 URL:		https://www.attrs.org/
 BuildRequires:	python3-build
-BuildRequires:	python3-hatch_fancy_pypi_readme
-BuildRequires:	python3-hatch_vcs
+BuildRequires:	python3-hatch-fancy_pypi_readme
+BuildRequires:	python3-hatch-vcs
 BuildRequires:	python3-hatchling
 BuildRequires:	python3-installer
 BuildRequires:	python3-modules >= 1:3.2
