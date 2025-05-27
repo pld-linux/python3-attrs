@@ -4,6 +4,7 @@
 
 %define		module	attrs
 Summary:	Writing classes without having to implement object protocols
+Summary(pl.UTF-8):	Pisanie klas bez konieczności implementowania protokołów obiektów
 Name:		python3-%{module}
 Version:	25.3.0
 Release:	2
@@ -44,6 +45,11 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 attrs is the Python package that will bring back the joy of writing
 classes by relieving you from the drudgery of implementing object
 protocols (aka dunder methods).
+
+%description -l pl.UTF-8
+attrs to pakiet Pythona przywracający radość pisanai klas, uwalniając
+od mordęgi implementowania protokołów obiektów (tzw. metod
+magicznych).
 
 %package apidocs
 Summary:	API documentation for Python %{module} module
