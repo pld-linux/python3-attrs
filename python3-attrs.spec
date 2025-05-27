@@ -13,21 +13,30 @@ Source0:	https://pypi.debian.net/attrs/%{module}-%{version}.tar.gz
 # Source0-md5:	173fe452e1fe986051d9bc194ed59525
 URL:		https://www.attrs.org/
 BuildRequires:	python3-build
-BuildRequires:	python3-hatch-fancy_pypi_readme
+BuildRequires:	python3-hatch-fancy-pypi-readme >= 23.2.0
 BuildRequires:	python3-hatch-vcs
 BuildRequires:	python3-hatchling
 BuildRequires:	python3-installer
-BuildRequires:	python3-modules >= 1:3.2
+BuildRequires:	python3-modules >= 1:3.8
 %if %{with tests}
-BuildRequires:	python3-pytest
+BuildRequires:	python3-hypothesis
+BuildRequires:	python3-pytest >= 4.3.0
+# optional
+#BuildRequires:	python3-cloudpickle
+#BuildRequires:	python3-pympler
 %endif
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 2.044
 %if %{with doc}
+BuildRequires:	python3-cogapp
+BuildRequires:	python3-furo
+BuildRequires:	python3-myst_parser
+BuildRequires:	python3-sphinx-notfound-page
+BuildRequires:	python3-sphinxcontrib-towncrier
+BuildRequires:	python3-towncrier
 BuildRequires:	sphinx-pdg-3
 %endif
-# replace with other requires if defined in setup.py
-Requires:	python3-modules >= 1:3.2
+Requires:	python3-modules >= 1:3.8
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -54,9 +63,7 @@ Dokumentacja API modułu Pythona %{module}.
 %py3_build_pyproject
 
 %if %{with tests}
-# use explicit plugins list for reliable builds (delete PYTEST_PLUGINS if empty)
 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
-PYTEST_PLUGINS= \
 %{__python3} -m pytest tests
 %endif
 
@@ -76,7 +83,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGELOG.md  README.md
+%doc CHANGELOG.md LICENSE README.md
 %{py3_sitescriptdir}/attr
 %{py3_sitescriptdir}/%{module}
 %{py3_sitescriptdir}/%{module}-%{version}.dist-info
